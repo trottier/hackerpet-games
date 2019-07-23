@@ -1,0 +1,7 @@
+Following are recommended pip3 install needed for twitchbot and hubcontroller
+
+  pip3 install irc
+  pip3 install numpy
+  pip3 install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
+  pip3 install pandas
+  pip3 install player
