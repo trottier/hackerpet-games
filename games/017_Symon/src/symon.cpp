@@ -75,7 +75,7 @@ const int MIN_LEVEL =      16;   // Number of past interactions to look at for p
 const int HISTORY_LENGTH=      7;   // Number of past interactions to look at for performance
 const int ENOUGH_SUCCESSES=    6;   // if successes >= ENOUGH_SUCCESSES level-up
 const int TOO_MANY_MISSES=     7;   // if num misses >= TOO_MANY_MISSES level-down
-const int REINFORCE_RATIO =      10; // the foodtreat reinforcement ratio [0-100] 100:always foodtreat
+const int REINFORCE_RATIO =      15; // the foodtreat reinforcement ratio [0-100] 100:always foodtreat
 // LED colors and intensities
 const int CUE_LIGHT_PRESENT_INTENSITY_RED = 99; // [0-99] // cue / status light is yellow in present phase
 const int CUE_LIGHT_PRESENT_INTENSITY_GREEN = 99; // [0-99]
