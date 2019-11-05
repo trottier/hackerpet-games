@@ -70,8 +70,8 @@ const char PlayerName[] = "Salk";
  * These constants (capitalized) and variables (camelCase) define the
  * gameplay
  */
-int currentLevel = 16; // LEVELS START AT 10
-const int MIN_LEVEL =      16;   // Number of past interactions to look at for performance
+int currentLevel = 18; // LEVELS START AT 10
+const int MIN_LEVEL =      18;   
 const int HISTORY_LENGTH=      7;   // Number of past interactions to look at for performance
 const int ENOUGH_SUCCESSES=    6;   // if successes >= ENOUGH_SUCCESSES level-up
 const int TOO_MANY_MISSES=     7;   // if num misses >= TOO_MANY_MISSES level-down
@@ -866,38 +866,38 @@ bool playSymon(){
     }
     else 
     {
-    // always do a retry when we the player got it wrong else reset it
-    prevRetryCounter = retryCounter;
-    if(!accurate)
-    {
-      if ((!focusPuzzle && random(0, 100) > DEFAULT_CORRECTION_EXIT_PERCENT) 
-          || (focusPuzzle && random(0, 100) > FOCUS_CORRECTION_EXIT_PERCENT))
+      // always do a retry when we the player got it wrong else reset it
+      prevRetryCounter = retryCounter;
+      if(!accurate)
       {
-        retryCounter++;
-        focusPuzzle = true;
+        if ((!focusPuzzle && random(0, 100) > DEFAULT_CORRECTION_EXIT_PERCENT) 
+            || (focusPuzzle && random(0, 100) > FOCUS_CORRECTION_EXIT_PERCENT))
+        {
+          retryCounter++;
+          focusPuzzle = true;
+        }
+        else
+        {
+          retryCounter = 0;
+          focusPuzzle = false;
+        }
+        
+        streakCounter = 0;
       }
-      else
+      else // successful interaction!
       {
+        if (streakCounter > 0 && random(0, 100) < (FOCUS_SUCCESS_EXIT_PERCENT * max(1, ((currentLevel % 10) - 5) ))  || streakCounter > 7)  // stop repeating more often as level increases above 5
+        {
+          focusPuzzle = false;
+        } 
+        else
+        {
+          focusPuzzle = true;
+        }
+        streakCounter++;
         retryCounter = 0;
-        focusPuzzle = false;
       }
-      
-      streakCounter = 0;
     }
-    else // successful interaction!
-    {
-      if (streakCounter > 0 && random(0, 100) < (FOCUS_SUCCESS_EXIT_PERCENT * max(1, ((currentLevel % 10) - 5) ))  || streakCounter > 7)  // stop repeating more often as level increases above 5
-      {
-        focusPuzzle = false;
-      } 
-      else
-      {
-        focusPuzzle = true;
-      }
-      streakCounter++;
-      retryCounter = 0;
-    }
-  }
   }
 
   // adjust level according to performance
